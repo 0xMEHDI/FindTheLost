@@ -92,12 +92,14 @@
             @if(Gate::allows('isAdmin') || $item['user_id']==auth()->user()->id)
             <a href="{{action('ItemController@edit', $item['id'])}}" class="btn btn-warning">Edit</a>
             @endif
+            @if(Gate::allows('isAdmin'))
             <div class="float-right">
               <form action="{{action('ItemController@destroy', $item['id'])}}" method="post"> @csrf
                 <input name="_method" type="hidden" value="DELETE">
                 <button class="btn btn-danger" type="submit">Delete</button>
               </form>
             </div>
+            @endif
           </div>
 
         </div>
